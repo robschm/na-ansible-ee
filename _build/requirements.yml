@@ -1,0 +1,10 @@
+---
+collections:
+  - community.general
+  - netapp.aws
+  - netapp.azure
+  - netapp.cloudmanager
+  - netapp.elementsw
+  - netapp.ontap
+  - netapp.storagegrid
+  - netapp.um_info

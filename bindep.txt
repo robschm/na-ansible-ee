@@ -1,6 +1,0 @@
-#python310, python311?
-python39-devel [platform:rpm compile]
-subversion [platform:rpm]
-subversion [platform:dpkg]
-git-lfs [platform:rpm]
-epel-release [platform:rpm]
