@@ -1,0 +1,11 @@
+---
+# NOTE: Fehler bei um_info
+# vermutlich dieser Fehler
+# https://github.com/dell/ansible-powerscale/issues/32
+collections:
+  - name: ansible.posix
+  - name: awx.awx
+  - name: community.crypto
+  - name: community.general
+  - name: netapp.ontap
+#  - name: netapp.um_info

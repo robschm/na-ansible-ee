@@ -1,0 +1,44 @@
+---
+# Netapp ONTAP Playbook to test REST and ZAPI (needs netapp-lib python library)
+- hosts: all
+  connection: local
+  gather_facts: false
+  name: Gather ONTAP Facts
+  vars:
+    netapp_username: admin
+    netapp_password: netapp123
+
+  tasks:
+  - name: "Gather ONTAP info via REST"
+    netapp.ontap.na_ontap_rest_info:
+      username: "{{ netapp_username }}"
+      password: "{{ netapp_password }}"
+      hostname: "{{ inventory_hostname }}"
+      https: yes
+      validate_certs: no
+      use_rest: always
+      gather_subset:
+        # NOTE: ONTAP 9.8 returns no explicit version
+        - cluster/software
+    register: ontap_info
+
+  - name: "Print REST result"
+    debug:
+      var: ontap_info
+
+  - name: "Gather ONTAP info via ZAPI"
+    netapp.ontap.na_ontap_info:
+      username: "{{ netapp_username }}"
+      password: "{{ netapp_password }}"
+      hostname: "{{ inventory_hostname }}"
+      https: yes
+      validate_certs: no
+      use_rest: never
+      gather_subset:
+        # NOTE: ONTAP 9.8 returns no explicit version
+        - cluster_identity_info
+    register: ontap_info
+
+  - name: "Print ONTAPI (ZAPI) result"
+    debug:
+      var: ontap_info

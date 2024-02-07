@@ -1,0 +1,4 @@
+---
+container_image: robschm/awx_ee_netapp:latest
+process_isolation_executable: docker
+process_isolation: true

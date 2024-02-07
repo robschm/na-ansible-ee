@@ -1,0 +1,25 @@
+git+https://github.com/ansible/ansible-sign
+ncclient
+paramiko
+pykerberos
+pyOpenSSL
+pypsrp[kerberos,credssp]
+pywinrm[kerberos,credssp]
+toml
+pexpect==4.9.0
+python-daemon
+pyyaml
+six
+# NetApp
+netapp-ontap==9.14.1.0
+netapp-lib==2021.6.25
+requests>=2.21
+requests-toolbelt==1.0.0
+marshmallow==3.20.1
+jmespath==1.0.1
+deepdiff==6.7.1
+urllib3==2.2.0
+# custom
+dumb-init
+nested-lookup==0.2.25
+openpyxl==3.1.2

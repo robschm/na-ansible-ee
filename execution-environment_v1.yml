@@ -1,15 +1,17 @@
 # Source: https://github.com/ansible/awx-ee/blob/devel/execution-environment.yml
+# Old version 1 ansible-builder format
+# Attention: Might be broken and cannot download collections from ansible-galaxy
+# Use newer v3 files
 ---
 version: 1
 
 build_arg_defaults:
   EE_BASE_IMAGE: 'quay.io/ansible/ansible-runner:latest'
-#  EE_BASE_IMAGE: 'quay.io/ansible/ansible-runner:stable-2.12-latest'
 
 dependencies:
-  galaxy: requirements.yml
-  python: requirements.txt
-  system: bindep.txt
+  galaxy: _build_v1/requirements.yml
+  python: _build_v1/requirements.txt
+  system: _build_v1/bindep.txt
 
 additional_build_steps:
   append:
@@ -18,7 +20,5 @@ additional_build_steps:
     # orchestration capabilities linking controllers with executors across a mesh of nodes.
     - COPY --from=quay.io/project-receptor/receptor:0.9.7 /usr/bin/receptor /usr/bin/receptor
     - RUN mkdir -p /var/run/receptor
-    - ADD run.sh /run.sh
-    - CMD /run.sh
-    - USER 1000 
+    - USER 1000
     - RUN git lfs install

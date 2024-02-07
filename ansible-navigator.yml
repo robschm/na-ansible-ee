@@ -1,0 +1,13 @@
+# https://ansible.readthedocs.io/projects/navigator/settings/
+---
+ansible-navigator:
+  # Enable prompts for password and in playbooks.
+  # This will set mode to stdout and disable playbook artifact creation
+  enable-prompts: true
+  execution-environment:
+    container-engine: docker
+    image: robschm/awx_ee_netapp:latest
+  logging:
+    level: critical
+    file: /tmp/log.txt
+  mode: stdout

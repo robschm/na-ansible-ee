@@ -1,0 +1,32 @@
+---
+# https://ansible.readthedocs.io/projects/builder/en/stable/definition/
+version: 3
+
+build_arg_defaults:
+  # This allows the user to pass the –pre flag (or others) to enable the installation of pre-release collections
+  ANSIBLE_GALAXY_CLI_COLLECTION_OPTS: '--pre'
+
+images:
+  base_image:
+    name: quay.io/centos/centos:stream9
+
+dependencies:
+  ansible_core:
+    # Require minimum of 2.15 to get ansible-inventory --limit option
+    package_pip: ansible-core>=2.15.0rc2,<2.16
+  ansible_runner:
+    package_pip: ansible-runner
+
+  galaxy: _build_v3_py39/requirements.yml
+  python: _build_v3_py39/requirements.txt
+  system: _build_v3_py39/bindep.txt
+
+additional_build_steps:
+  append_base:
+    - RUN $PYCMD -m pip install -U pip wheel setuptools
+  append_final:
+    - COPY --from=quay.io/ansible/receptor:devel /usr/bin/receptor /usr/bin/receptor
+    - RUN mkdir -p /var/run/receptor
+    - RUN git lfs install --system
+    # TODO TEST
+    - ENV ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3.9
