@@ -6,6 +6,9 @@
 /artifacts/
 /context/
 /venv/
+*.json
+ansible-navigator.log
+inventory.ini
 
 # User-specific stuff
 .idea/**/misc.xml
