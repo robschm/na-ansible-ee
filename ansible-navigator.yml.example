@@ -6,7 +6,7 @@ ansible-navigator:
   enable-prompts: true
   execution-environment:
     container-engine: docker
-    image: robschm/awx_ee_netapp:latest
+    image: robschm/na-ansible-ee:latest
   logging:
     level: critical
     file: /tmp/log.txt

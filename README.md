@@ -233,27 +233,3 @@ Use this space to list resources you find helpful and would like to give credit 
 [Ansible-url]: https://ansible.com
 [Docker.com]: https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=Docker&logoColor=white
 [Docker-url]: https://docker.com 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
