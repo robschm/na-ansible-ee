@@ -1,0 +1,35 @@
+---
+# based on the official awx-ee: https//github.com/ansible/awx-ee/
+#
+# links:
+# https://ansible.readthedocs.io/projects/builder/en/stable/definition/
+# https://ansible-builder.readthedocs.io/_/downloads/en/latest/pdf/
+version: 3
+
+images:
+  base_image:
+    name: quay.io/rockylinux/rockylinux:9.5
+
+dependencies:
+  python_interpreter:
+    package_system: python3.12  # (optional) name of a Python interpreter OS package to install
+    python_path: /usr/bin/python3.12  # (optional) path to the Python interpreter to use
+  ansible_core:
+    package_pip: ansible-core==2.18.1
+  ansible_runner:
+    package_pip: ansible-runner==2.4.0
+
+  galaxy: _build_v3_py312/requirements.yml
+  python: _build_v3_py312/requirements.txt
+  system: _build_v3_py312/bindep.txt
+
+additional_build_steps:
+  append_base:
+    - RUN $PYCMD -m pip install -U pip wheel setuptools
+  append_final:
+    - COPY --from=quay.io/ansible/receptor:devel /usr/bin/receptor /usr/bin/receptor
+    - RUN mkdir -p /var/run/receptor
+    - RUN git lfs install --system
+    # SymLink `python` -> `python3.12`
+    - RUN alternatives --install /usr/bin/python python /usr/bin/python3.12 312
+    - ENV ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3.12

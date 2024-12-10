@@ -1,6 +1,0 @@
-# compile marked dependencies will be installed into the build container but not the final runtime container
-python39-devel [platform:rpm compile]
-subversion [platform:rpm]
-subversion [platform:dpkg]
-git-lfs [platform:rpm]
-epel-release [platform:rpm]

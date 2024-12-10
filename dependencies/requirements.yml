@@ -1,0 +1,23 @@
+---
+collections:
+  - name: ansible.posix
+    version: 2.0.0
+  - name: awx.awx
+    version: 24.6.1
+  - name: community.general
+  - name: community.crypto
+    version: 2.22.3
+  # NetApp
+#  FileNotFoundError: [Errno 2] No such file or directory: '/usr/share/ansible/collections/ansible_collections/netapp/aws/../requirements.txt'
+#Expected requirements file not present at: /usr/share/ansible/collections/ansible_collections/netapp/requirements.txt
+#  - name: netapp.aws
+  - name: netapp.azure
+  - name: netapp.cloudmanager
+  - name: netapp.elementsw
+  - name: netapp.ontap
+    version: 22.13.0
+  - name: netapp.storagegrid
+    #27 [builder 6/7] RUN /usr/bin/python3.12 /output/scripts/introspect.py introspect --user-pip=requirements.txt --user-bindep=bindep.txt --write-bindep=/tmp/src/bindep.txt --write-pip=/tmp/src/requirements.txt
+#27 0.192 Expected requirements file not present at: /usr/share/ansible/collections/ansible_collections/netapp/requirements.txt
+#  - name: netapp.um_info
+#    version: 21.8.1
