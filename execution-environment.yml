@@ -19,9 +19,9 @@ dependencies:
   ansible_runner:
     package_pip: ansible-runner==2.4.0
 
-  galaxy: _build_v3_py312/requirements.yml
-  python: _build_v3_py312/requirements.txt
-  system: _build_v3_py312/bindep.txt
+  system: dependencies/bindep.txt
+  python: dependencies/requirements.txt
+  galaxy: dependencies/requirements.yml
 
 additional_build_steps:
   append_base:
@@ -32,4 +32,5 @@ additional_build_steps:
     - RUN git lfs install --system
     # SymLink `python` -> `python3.12`
     - RUN alternatives --install /usr/bin/python python /usr/bin/python3.12 312
+    # Set default ansible python interpreter to Python 3.12
     - ENV ANSIBLE_PYTHON_INTERPRETER=/usr/bin/python3.12
